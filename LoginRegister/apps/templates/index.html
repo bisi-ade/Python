@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Login & Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="registration">
+            <h1>Registration</h1>
+            <form action="/register" method="post">
+                {% csrf_token %}
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" placeholder="Enter First Name">
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" placeholder="Enter Last Name">
+                <label for="email">Email Address:</label>
+                <input type="text" name="email" placeholder="Enter Email Address">
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="Enter Password">
+                <label for="pw_confirm">Confirm Password:</label>
+                <input type="password" name="pw_confirm" placeholder="Re-enter Password">
+                <button type="submit">Register</button>
+            </form>
+            {% for message in messages %}
+            <p class="red">{{ message }}</p>
+            {% endfor %}
+        </div>
+        <div id="login">
+            <h1>Login</h1>
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <label for="email">Email Address:</label>
+                <input type="text" name="email" placeholder="Enter Email Address">
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="Enter Password">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

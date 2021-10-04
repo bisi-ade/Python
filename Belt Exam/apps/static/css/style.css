@@ -1,0 +1,101 @@
+body {
+    background-color: rgb(64, 141, 199);
+}
+.wrapper {
+    width: 1200px;
+    margin: auto;
+    padding: 20px
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid black;
+}
+
+nav div {
+    justify-self: right;
+}
+nav div button {
+    margin-left: 10px;
+    box-shadow: 1px 1px 1px black;
+}
+    nav div button a {
+        text-decoration: none;
+    }
+nav div .nav-a {
+    margin-left: 10px;
+}
+
+.Registration, .Login {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.Registration form {
+    display: grid;
+    grid-template-columns: 150px .75fr;
+    row-gap: 10px;
+}
+
+.Registration form .button {
+    grid-column: 1/3;
+    justify-self: center;
+    margin: 10px 0;
+    box-shadow: 1px 1px 1px black;
+}
+
+.Registration form .error {
+    grid-column: 1/3;
+    color: red;
+}
+
+.dash-table {
+    width: 100%;
+    border: 1px solid black;
+}
+.dash-table * {
+    border: 1px solid black;
+}
+.dash-table a {
+    border: none;
+    text-decoration: none;
+}
+        
+.jN-form {
+    margin-top: 20px;
+}
+.jN-submit {
+    grid-column: 1/3;
+    justify-self: center;
+    margin: 10px 0;
+}
+.jN-submit * {
+    box-shadow: 1px 1px 1px black;
+    margin: 0 5px;
+}
+
+.jN-checkboxes * {
+    margin: 5px 0;
+}
+
+.jE-form {
+    margin-top: 20px;
+}
+
+.j_i-col {
+    border: 2px solid black;
+    margin-top: 20px;
+    width: 50%;
+    padding: 10px;
+    box-shadow: 2px 2px 2px black;
+}
+
+.j_i-col p {
+    padding-left: 20px;
+}
+
+.j_i-cat {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belt Exam</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav>
+            <h2>Hello, {{user.first_name}}!</h2>
+            <div>
+                <a href="/rd/logout">Logout</a>
+                <button type="submit">
+                    <a href="/jobs/new">New Job!</a>
+                </button>
+            </div>
+        </nav>
+
+        <h4>Everyone's Jobs:</h4>
+        <table class="dash-table">
+            <thead>
+                <th>Job</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </thead>
+            {% for job in jobs %}
+            {% if job.owned_by_user == None %}
+            <tr>
+                <td>{{job.title}}</td>
+                <td>{{job.location}}</td>
+                <td>
+                    <a href="/jobs_info/{{job.id}}">View |</a>
+                    {% if job.made_by_user.id == request.session.userid %}
+                    <a href="/jobs/edit/{{job.id}}">Edit |</a>
+                    <a href="/rd/remove_job/{{job.id}}">Remove |</a>
+                    {% endif %}
+                    <a href="/rd/take_job/{{job.id}}">Add</a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+
+        <h4>{{user.first_name}}'s Jobs!</h4>
+        <table class="dash-table">
+            <thead>
+                <th>Job</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </thead>
+            {% for job in jobs %}
+            {% if job.owned_by_user.id == user.id %}
+            <tr>
+                <td>{{job.title}}</td>
+                <td>{{job.location}}</td>
+                <td>
+                    <a href="/jobs_info/{{job.id}}">View |</a>
+                    <a href="/rd/remove_job/{{job.id}}">Done |</a>
+                    <a href="/rd/give_up_job/{{job.id}}">Give Up</a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+
+    </div>
+
+</body>
+
+</html>

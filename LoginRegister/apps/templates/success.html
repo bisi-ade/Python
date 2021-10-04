@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/success.css' %}">
+</head>
+
+<body>
+    <h1>User Home Page</h1>
+    {% for message in messages %}
+    <p class="text-success"> {{ message }}</p>
+    {% endfor %}
+    <h3>Welcome  {{ request.session.firstName }}</h3>
+   
+    <table>
+        <tr>
+            <th class="th">ID</th>
+            <th class="th">First Name</th>
+            <th class="th">Last Name</th>
+            <th class="th">Email</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td class="td">{{ user.id }}</td>
+            <td class="td">{{ user.first_name }}</td>
+            <td class="td">{{ user.last_name }}</td>
+            <td class="td">{{ user.email }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/"><button type="button">Go Back</button></a>
+
+</body>
+
+</html>

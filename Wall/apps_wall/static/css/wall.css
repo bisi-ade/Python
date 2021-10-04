@@ -1,0 +1,38 @@
+body {
+    font-family: arial;
+  }
+  
+  #wrapper {
+    padding: 50px;
+    width: 1200px;
+  }
+  
+  .inline {
+    display: inline-block;
+  }
+  
+  h1 {
+    margin: 0 800px 40px 0;
+  }
+  
+  button {
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  textarea {
+    border-radius: 5px;
+    display: block;
+  }
+  
+  .message_button {
+    margin: 20px 0 20px 450px;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  .indent{
+    margin-left: 10px;
+  }

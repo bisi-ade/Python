@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belt Exam</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="Registration">
+            <div class="col">
+                <h1>Register</h1>
+                <form action="/rd/register" method="post">
+                    {% csrf_token %}
+                    {% for message in messages %}
+                    {% if 'first_name' in message.tags %}
+                    <p class="{{message.tags}}">{{message}}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" placeholder="Enter First Name">
+                    {% for message in messages %}
+                    {% if 'last_name' in message.tags %}
+                    <p class="{{message.tags}}">{{message}}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" placeholder="Enter Last Name">
+                    {% for message in messages %}
+                    {% if 'email' in message.tags %}
+                    <p class="{{message.tags}}">{{message}}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" placeholder="Enter Email Address">
+                    {% for message in messages %}
+                    {% if 'reg_pw' in message.tags %}
+                    <p class="{{message.tags}}">{{message}}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" placeholder="Enter Password">
+                    {% for message in messages %}
+                    {% if 'confirm_pw' in message.tags %}
+                    <p class="{{message.tags}}">{{message}}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="password" name="confirm_password" placeholder="Re-enter Password">
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+        <div class="Login">
+            <div class="col">
+                <h1>Login</h1>
+                <form action="/rd/login" method="post">
+                    {% csrf_token %}
+                    {% for message in messages %}
+                    {% if 'login_em' in message.tags %}
+                    <p class="{{message.tags}}">{{message}}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" placeholder="Enter Email Address">
+                    {% for message in messages %}
+                    {% if 'login_pw' in message.tags %}
+                    <p class="{{message.tags}}">{{message}}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" placeholder="Enter Password">
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+
+        </div>
+       
+
+    </div>
+
+</body>
+
+</html>

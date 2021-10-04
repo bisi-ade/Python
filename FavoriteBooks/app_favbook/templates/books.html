@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_books.css' %}" />
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <h1>Welcome, {{logged_user.first_name}}!</h1>
+            <div id="menu">
+                <a href="/home">Home</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </nav>
+
+        <div class="columns">
+            <div class="column">
+                <h2>Add a Favorite Book</h2>
+
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{message.tags}}" {% endif%}>{{message}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                <form action="/books/add/" method="post">
+                    {% csrf_token %}
+                    <label> Title<input type="text" name="title" /></label>
+                    <label> Description<textarea name="desc">Description</textarea></label>
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+
+            <div class="column">
+                <h2>All Books</h2>
+                {% for book in books %}
+                <ul>
+                    <a href="/books/{{book.id}}">
+                        <li>{{book.title}}</li>
+                    </a>
+                    <li>(added by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}})</li>
+                    {% if book in logged_user.liked_books.all %}
+                
+            
+                    <li><span>this is one of your favorites</span></li>
+                    {% else %}
+                    <a href="/books/{{book.id}}/favorite/">
+                        <li>Add to Favorites</li>
+                    </a>
+                    {% endif %}
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

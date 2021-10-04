@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belt Exam</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav>
+            <h2>Hello, {{user.first_name}}! These are the job details!</h2>
+            <div>
+                <a href="/dashboard">Dashboard</a>
+                <a class="nav-a" href="/rd/logout">Logout</a>
+            </div>
+        </nav>
+        <div class="Registration">
+            <div class="col j_i-col">
+                <h3>{{job.title}}</h3>
+                <p>{{job.description}}</p>
+                <p>Location: {{job.location}}</p>
+                <p>Posted by: {{job.made_by_user.first_name}}</p>
+                <p>Posted on: {{job.created_at}}</p>
+                {% if categories == 'None' %}
+                <p>Categories: None</p>
+                {% else %}
+                <div class="j_i-cat">
+                    <p>Categories:</p>
+                    <div style="align-self: center;">
+                        {% for category in categories %}
+                        {% if category.name != lastcat.name %}
+                        <span>{{category.name}},&nbsp</span>
+                        {% endif %}
+                        {% endfor %}
+                        <span>{{lastcat.name}}</span>
+                    </div>
+                    {% endif %}
+                </div>
+                {% if job.owned_by_user == None %}
+                <a href="/rd/take_job/{{job.id}}">Add to my jobs</a>
+                {% else %}
+                <a href="/rd/give_up_job/{{job.id}}">Give Up job</a>
+                {% endif %}
+            </div>
+            <div class="col">
+                <h1></h1>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belt Exam</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav>
+            <h2>Edit Job</h2>
+            <div>
+                <a href="/dashboard">Dashboard</a>
+                <a class="nav-a" href="/rd/logout">Logout</a>
+            </div>
+        </nav>
+        <div class="Registration">
+            <div class="col">
+                <form class="jE-form" action="/rd/edit_job/{{job.id}}" method="post">
+                    {% csrf_token %}
+                    {% for message in messages %}
+                    {% if 'title' in message.tags %}
+                    <p class="{{message.tags}}">{{message}}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" value="{{job.title}}">
+                    {% for message in messages %}
+                    {% if 'location' in message.tags %}
+                    <p class="{{message.tags}}">{{message}}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <label for="location">Location:</label>
+                    <input type="text" name="location" value="{{job.location}}">
+                    {% for message in messages %}
+                    {% if 'description' in message.tags %}
+                    <p class="{{message.tags}}">{{message}}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <label for="description">Description:</label>
+                    <textarea name="description" id="" cols="30" rows="10">{{job.description}}</textarea>
+                    <div class="jN-submit">
+                        <button type="submit" formaction="/dashboard">Cancel</button>
+                        <input type="submit" value="Update">
+                    </div>
+                </form>
+
+            </div>
+            <div class="col">
+                <h1></h1>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
